@@ -1,7 +1,11 @@
-name: Maven CI/CD
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the workflow will run
 on:
- push:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
