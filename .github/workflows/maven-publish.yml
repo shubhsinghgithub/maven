@@ -24,3 +24,21 @@ jobs:
 
     - name: Build project with Maven
       run: mvn -B package --file pom.xml
+
+  Deploying_Code:
+    name: Deploying Code on Server
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Started Deploying Code on Server
+      env:
+        User: ${{ secrets.FTP_USERNAME }}
+        Pass: ${{ secrets.FTP_PASSWORD }}
+        Host: ${{ secrets.FTP_SERVER }}
+        Port: ${{ secrets.FTP_PORT }}
+      run: |
+        wget https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp && chmod +x git-ftp
+        git config git-ftp.user "$User" && git config git-ftp.password "$Pass"
+        git config git-ftp.url sftp://"$Host":"$Port"/home/wpweb/public_html/
+        ./git-ftp push --insecure --syncroot .
+        echo "Deployed Code Successfully on BlazinSafety Production Server"
