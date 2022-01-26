@@ -36,6 +36,6 @@ jobs:
       run: |
         wget https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp && chmod +x git-ftp
         git config git-ftp.user "$User" && git config git-ftp.password "$Pass"
-        git config git-ftp.url sftp://"$Host":"$Port"/home/wpweb/public_html/
+        git config git-ftp.url sftp://"$Host":"$Port"/home/wpweb/
         ./git-ftp push --insecure --syncroot .
         echo "Deployed Code Successfully on BlazinSafety Production Server"
